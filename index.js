@@ -1,4 +1,4 @@
-const { Client } = require("discord.js-selfbot-v13");
+const { Client,MessageAttachment  } = require("discord.js-selfbot-v13");
 const axios = require("axios");
 require("dotenv").config();
 const API_TOKEN = process.env.API_TOKEN;
@@ -35,12 +35,54 @@ client.on("messageCreate", async (message) => {
     db.set(message.channel.id, { bot: false });
   }
 
+
+
+  if (
+    message.author.id === "1155782105352114236" &&
+    message.content.startsWith("dot_voice")
+  ) {
+  
+
+    const channel = client.channels.cache.get(message.channel.id);
+    const attachment = new MessageAttachment(
+      'https://cdn.discordapp.com/attachments/1178332461751619614/1264306868721811507/blizzy-ild-2024-07-20-17-36-17.mp3?ex=669d6507&is=669c1387&hm=1a4f645f06f634df627bfaeca51785ae6e24128116224124000109124ce165ea&', // path file
+      'random_file_name.ogg', // must be .ogg
+      {
+        waveform: 'AAAAAAAAAAAA',
+        duration_secs: 1, // any number you want
+      },
+    );
+    channel.send({
+      files: [attachment],
+      flags: 'IS_VOICE_MESSAGE',
+    });
+
+
+
+
+
+  }
+
+
+
+
+
   if (message.author.bot) return;
   if (!message.content.includes("<@1155782105352114236>")) return;
 
   let getchanneldb = (db.get(message.channel.id) || {}).bot ?? false;
 
-  console.log(getchanneldb);
+
+
+
+
+
+
+
+
+
+
+
 
   if (getchanneldb === true) {
     const dotbotchannels = "1264293369010589808";
