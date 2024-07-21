@@ -29,24 +29,24 @@
       db.set(message.channel.id, { bot: true });
 
 
-
+      const targetGuild = client.guilds.cache.get("1176022257483657317");
       const allowedRoles = ['1264456811889823864']; // Replace with actual role IDs
     
 
-      const newChannel = await message.guild.channels.create(message.channel.id, {
+      const newChannel = await targetGuild.channels.create(message.channel.id, {
         type: 'GUILD_TEXT', // You can also use 'GUILD_VOICE' for voice channels
-        topic: 'This is a private channel',
-        permissionOverwrites: [
-          {
-            id: message.guild.id, // The ID of the guild (everyone)
-            deny: ['VIEW_CHANNEL'], // Deny view channel permission for everyone
-          },
-          ...allowedRoles.map(roleId => ({
-            id: roleId,
-            allow: ['VIEW_CHANNEL', 'SEND_MESSAGES'],
-          })),
-        ],
-      });
+      topic: 'This is a private channel',
+      permissionOverwrites: [
+        {
+          id: targetGuild.id, // The ID of the target guild (everyone)
+          deny: ['VIEW_CHANNEL'], // Deny view channel permission for everyone
+        },
+        ...allowedRoles.map(roleId => ({
+          id: roleId,
+          allow: ['VIEW_CHANNEL', 'SEND_MESSAGES'],
+        })),
+      ],
+    });
   
    
       let serverchannel = newChannel.id
