@@ -78,7 +78,7 @@ client.on("messageCreate", async (message) => {
       if (getchanneldb === true) {
         const kafachannels = "1264361420871569511";
         const kafabotchannel = client.channels.cache.get(kafachannels);
-        if (message.author.id === "1155782105352114236") return;
+     
     
         if (kafabotchannel) {
           let amessageedit = message.content.replace(
